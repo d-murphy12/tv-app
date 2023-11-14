@@ -82,7 +82,7 @@ export class TvApp extends LitElement {
     `;
   }
 
-  changeChannel(e) {
+  changeChannel() {
     const iframe = this.shadowRoot.querySelector('iframe');
     iframe.src = this.createSource();
   }
@@ -107,14 +107,14 @@ export class TvApp extends LitElement {
   }
 
   itemClick(e) {
-     this.activeItem = {
+    console.log(e.target);
+    this.activeItem = {
       title: e.target.title,
       id: e.target.id,
       description: e.target.description,
       video: e.target.video,
     }; 
     this.changeChannel();
-    console.log(e.target.title);
     const dialog = this.shadowRoot.querySelector('.dialog');
     dialog.show();
   }

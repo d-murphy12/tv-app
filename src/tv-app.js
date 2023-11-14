@@ -39,6 +39,27 @@ export class TvApp extends LitElement {
         margin: 16px;
         padding: 16px;
       }
+      .listing-container {
+        justify-self: center;
+        max-width: 1344px;
+        justify-items: left;
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: auto;
+        padding-left: .5rem;
+        padding-right: .5rem;
+        text-rendering: optimizeLegibility;
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+        animation-delay: 1s;
+        animation-duration: 1s;
+        line-height: 1.5;
+        font-size: 1em;
+      }
       `
     ];
   }
@@ -46,6 +67,7 @@ export class TvApp extends LitElement {
   render() {
     return html`
       <h2>${this.name}</h2>
+      <div class="listing-container">
       ${
         this.listings.map(
           (item) => html`
@@ -61,9 +83,9 @@ export class TvApp extends LitElement {
           `
         )
       }
+      </div>
       <div>
       ${this.activeItem.name}
-      ${this.activeItem.description}
       <iframe
         width="750"
         height="400"
@@ -71,8 +93,16 @@ export class TvApp extends LitElement {
         frameborder="0"
         allowfullscreen
       ></iframe>
-        <!-- video -->
         <!-- discord / chat - optional -->
+        <iframe
+        src="https://discord.com/widget?id=YOUR_DISCORD_SERVER_ID&theme=dark"
+        width="400"
+        height="800"
+        allowtransparency="true"
+        frameborder="0"
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+        >
+        </iframe>
       </div>
       <!-- dialog -->
       <sl-dialog label="${this.activeItem.title}" class="dialog">

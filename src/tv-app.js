@@ -60,6 +60,13 @@ export class TvApp extends LitElement {
         line-height: 1.5;
         font-size: 1em;
       }
+      .wrapper {
+        display: inline-flex;
+        padding: 16px;
+      }
+      .discord {
+        padding-left: 20px;
+      }
       `
     ];
   }
@@ -84,15 +91,15 @@ export class TvApp extends LitElement {
         )
       }
       </div>
-      <div>
-      ${this.activeItem.name}
-      <iframe
-        width="750"
-        height="400"
-        src="${this.createSource()}" 
-        frameborder="0"
-        allowfullscreen
-      ></iframe>
+
+      <div class="wrapper">
+        <iframe
+          width="750"
+          height="400"
+          src="https://www.youtube.com/embed/We3Rc4qwTko&t=2s&ab_channel=TheHighlightFactory" 
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
 
         <!-- discord / chat - optional -->
         <div class="discord">
@@ -101,13 +108,14 @@ export class TvApp extends LitElement {
           width="100%" 
           height="100%" 
           style="display: inline-block; overflow: hidden; background-color: rgb(54, 57, 62); border-radius: 7px; vertical-align: top; width: 100%; height: 100%;">
-          <iframe title="WidgetBot Discord chat embed" allow="clipboard-write; fullscreen" src="https://e.widgetbot.io/channels/954008116800938044/1106691466274803723?api=a45a80a7-e7cf-4a79-8414-49ca31324752" style="border: none; width: 100%; height: 100%;">
+          <iframe title="WidgetBot Discord chat embed" allow="clipboard-write; fullscreen" src="https://e.widgetbot.io/channels/954008116800938044/1106691466274803723?api=a45a80a7-e7cf-4a79-8414-49ca31324752" 
+            style="border: none; width: 100%; height: 100%;">
           </iframe>
           </widgetbot>
             <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
           </div>
-
       </div>
+
       <!-- dialog -->
       <sl-dialog label="${this.activeItem.title}" class="dialog">
           ${this.activeItem.description}

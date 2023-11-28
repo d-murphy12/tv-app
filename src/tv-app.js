@@ -116,6 +116,11 @@ export class TvApp extends LitElement {
           </div>
       </div>
 
+      <tv-channel title="${this.activeItem.title}">
+    <p>${this.activeItem.description}
+    </p>
+  </tv-channel>
+
       <!-- dialog -->
       <sl-dialog label="${this.activeItem.title}" class="dialog">
           ${this.activeItem.description}

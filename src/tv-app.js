@@ -3,6 +3,7 @@ import { LitElement, html, css } from 'lit';
 import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import "./tv-channel.js";
+import "@lrnwebcomponents/video-player/video-player.js";
 
 export class TvApp extends LitElement {
   // defaults
@@ -61,11 +62,16 @@ export class TvApp extends LitElement {
         font-size: 1em;
       }
       .wrapper {
-        display: inline-flex;
-        padding: 16px;
+        display: inline-block;
+        padding: 20px;
+        width: 650px;
+        vertical-align: top;
       }
       .discord {
-        padding-left: 20px;
+        display: inline-block;
+        height: 440px;
+        vertical-align: top;
+        padding: 20px;
       }
       `
     ];
@@ -85,6 +91,7 @@ export class TvApp extends LitElement {
               description="${item.description}"
               @click="${this.itemClick}"
               video="${item.metadata.source}"
+              timecode="${item.metadata.timecode}"
             >
             </tv-channel>
           `
@@ -92,14 +99,15 @@ export class TvApp extends LitElement {
       }
       </div>
 
+      <div>
       <div class="wrapper">
-        <iframe
-          width="750"
-          height="400"
-          src="https://www.youtube.com/embed/We3Rc4qwTko&t=2s&ab_channel=TheHighlightFactory" 
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
+      <video-player 
+        source="https://www.youtube.com/watch?v=We3Rc4qwTko&ab_channel=TheHighlightFactory" 
+        accent-color="orange" 
+        dark track="https://haxtheweb.org/files/HAXshort.vtt">
+     </video-player>
+    </div>
+        
 
         <!-- discord / chat - optional -->
         <div class="discord">
@@ -107,31 +115,31 @@ export class TvApp extends LitElement {
           channel="1106691466274803723" 
           width="100%" 
           height="100%" 
-          style="display: inline-block; overflow: hidden; background-color: rgb(54, 57, 62); border-radius: 7px; vertical-align: top; width: 100%; height: 100%;">
+          style="overflow: hidden; background-color: rgb(54, 57, 62); border-radius: 7px; vertical-align: top; width: 100%; height: 100%;">
           <iframe title="WidgetBot Discord chat embed" allow="clipboard-write; fullscreen" src="https://e.widgetbot.io/channels/954008116800938044/1106691466274803723?api=a45a80a7-e7cf-4a79-8414-49ca31324752" 
             style="border: none; width: 100%; height: 100%;">
           </iframe>
           </widgetbot>
             <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
           </div>
-      </div>
+    </div>
+    
 
-      <tv-channel title="${this.activeItem.title}">
-    <p>${this.activeItem.description}
-    </p>
-  </tv-channel>
+      <tv-channel title="${this.activeItem.title}" style="display: block;">
+        <p>${this.activeItem.description}</p>
+      </tv-channel>
 
       <!-- dialog -->
       <sl-dialog label="${this.activeItem.title}" class="dialog">
           ${this.activeItem.description}
-        <sl-button slot="footer" variant="primary" @click="${this.closeDialog}">Watch</sl-button>
+        <sl-button slot="footer" variant="primary" @click="${this.buttonClick}">Watch</sl-button>
       </sl-dialog>
     `;
   }
 
   changeChannel() {
-    const iframe = this.shadowRoot.querySelector('iframe');
-    iframe.src = this.createSource();
+    const vid = this.shadowRoot.querySelector('video-player');
+    vid.source = this.createSource();
   }
 
   extractVideoId(link) {
@@ -161,9 +169,16 @@ export class TvApp extends LitElement {
       description: e.target.description,
       video: e.target.video,
     }; 
-    this.changeChannel();
+    //this.changeChannel();
     const dialog = this.shadowRoot.querySelector('.dialog');
     dialog.show();
+  }
+
+  buttonClick(e) {
+    this.changeChannel();
+    const dialog = this.shadowRoot.querySelector('.dialog');
+    dialog.hide();
+    this.shadowRoot.querySelector('video-player').shadowRoot.querySelector('a11y-media-player').play();
   }
 
   // LitElement life cycle for when any property changes

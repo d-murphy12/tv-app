@@ -19,6 +19,7 @@ export class TvChannel extends LitElement {
       presenter: { type: String },
       description: { type: String },
       video: { type: String },
+      timecode: { type: Number },
     };
   }
   // LitElement convention for applying styles JUST to our element
@@ -40,13 +41,24 @@ export class TvChannel extends LitElement {
     }
     .wrapper {
       margin: .5rem;
-      padding: .5rem;
-      padding-left: 1px;
-      padding-right: 16px;
+      padding: 16px;
       border-radius: 6px;
       border-color: #4a4a4a;
       box-shadow: 0px 0px 0px 1px #dbdbdb;
       background-color: #ffffff;
+      vertical-align: top;
+    }
+    .time {
+      display: inline-block;
+      vertical-align: top;
+      padding: 16px;
+      background-color: lightblue;
+      border-radius: 8px;
+      height: 6px;
+
+    }
+    .titles {
+      display: inline-block;
     }
     `;
   }
@@ -54,8 +66,13 @@ export class TvChannel extends LitElement {
   render() {
     return html`
       <div class="wrapper">
-        <h3>${this.title}</h3>
-        <h4>${this.presenter}</h4>
+        <div class="time">
+          ${this.timecode} min
+        </div>
+        <div class="titles">
+          <h3>${this.title}</h3>
+          <h4>${this.presenter}</h4>
+        </div>
         <slot></slot>
       </div>  
       `;

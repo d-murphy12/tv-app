@@ -22,7 +22,8 @@
           "timecode": 5,
           "author":"The Highlight Factory",
           "created": 1697033522,
-          "updated": 1697034021
+          "updated": 1697034021,
+          "time": "12:00"
         }
       },
       {
@@ -39,7 +40,8 @@
           "timecode": 6,
           "author":"NHL",
           "created": 1697033522,
-          "updated": 1697034021
+          "updated": 1697034021,
+          "time": "1:00"
         }
       },
       {
@@ -56,7 +58,8 @@
           "timecode": 7,
           "author":"NHL",
           "created": 1697033522,
-          "updated": 1697034021
+          "updated": 1697034021,
+          "time": "1:30"
         }
       },
       {
@@ -73,7 +76,8 @@
           "timecode": 6,
           "author":"The Highlight Factory",
           "created": 1697033522,
-          "updated": 1697034021
+          "updated": 1697034021,
+          "time": "2:00"
         }
       },
       {
@@ -90,7 +94,8 @@
           "timecode": 13,
           "author":"NHL",
           "created": 1697033522,
-          "updated": 1697034021
+          "updated": 1697034021,
+          "time": "3:00"
         }
       }
     ]
